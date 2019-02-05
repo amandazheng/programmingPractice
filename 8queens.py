@@ -2,9 +2,8 @@
 # function for checking
 # while loop for repeating
 
-xCor = [0,0,0,0,0,0,0,0]
-yCor = [0,0,0,0,0,0,0,0]
 queenList = []
+check = True
 
 class queen():
     '''class for all queens'''
@@ -12,29 +11,40 @@ class queen():
         self.x = x
         self.y = y
         self.correct = correct
-        self.checkCorrect()
     
-    def checkCorrect(queenNum):
+    # to loop through the queens and move the queen when needed
+    def moveQueen(self, queenNum):
         for b in range(8):
             if b != queenNum:
                 if self.x == queenList[b].x: 
                     self.x += 1
                     print("moved x")
+                    print( self.x)
+                    print(self.x - 1)
+
                 if (self.x - 1) == queenList[b].x and (self.y - 1) == queenList[b].y:
                     self.x += 1
+                    print(self.x - 1)
                     print("moved diag")
-
-            
-
+                else: 
+                    self.correct = True
+                    print("true")
+    
+    
+#to check if the game is done yet
+def gameStatus():
+    for b in range(8):
+        if queenList[b].correct == False: 
+            break
+    check = False
 
 # to make list of queens
 for a in range(8):
     queenList.append(queen(0, a, False))
-    print(queenList[a].y)
 
-check = True
-
+#begins while loop for checking
 while check == True: 
     for c in range(8): 
-        if queen[c].correct = False: 
-            queen[c].checkCorrect(c)
+        if queenList[c].correct == False: 
+            queenList[c].moveQueen(c)
+    gameStatus()
